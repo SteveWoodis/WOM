@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html ng-app="WOMApp">
 <head>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -10,9 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/../bower_components/bootstrap-css/css/bootstrap.css" />
     <link rel="stylesheet" href="/../bower_components/fullcalendar/dist/fullcalendar.css">
-    <link rel="stylesheet" href="src/calendarDemo.css" />
+    <link rel="stylesheet" href="calendarDemo.css" />
 
-    
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
+    <script src="../bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src="../src/calendar.js"></script>
+    <script src="calendarDemo.js"></script>
+    <script src="../activityctrl.js"></script>
 <script> var geocoder;
   var map;
   function initialize() {
@@ -45,10 +53,10 @@
   }
   </script>
 </head>
-<body onload="return my_curr_date()"; onload="initialize();" ng-controller="MainController">
+<body onload="return my_curr_date()"; onload="initialize();" ngcontroller="MainController" ng-app="WOMApp">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-10">
+			<div class="col-xs-6">
 				<p class="titleHeading">Local Activities for <input type='text' name='dateField' id='dateField' style="border:1px transparent" value='' /> </p>
           <form ng-submit='Activities()'>
             <div class='input-group'>
@@ -59,7 +67,28 @@
               </br>
             </div>
           </form>
-         
+          <ul>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+               <h3 class="panel-title"><li ng-repeat="activity in activities"> Activity:{{ActivityTitle}}</li></h3>
+              </div>
+              <div class="panel-body">
+                Date:{{ActivityDate}}
+              </div>
+              <div class="panel-body">
+                Time:{{ActivityTime}}
+              </div>
+              <div class="panel-body">
+                Address:{{ActivityAddress}}
+              </div>
+              <div class="panel-body">
+                Summary:{{ActivitySummary}}
+              </div>
+            </div>
+          </ul>
+           <div>
+          <button onclick="ActivityWindow()">Enter an Activity</button>
+        </div>
         <section id="directives-calendar" ng-controller="CalendarCtrl">
               <div class="well">
                 <div class="row-fluid">
@@ -107,7 +136,7 @@
            
         </section>
 			</div>
-			<div class="col-xs-2">
+			<div class="col-xs-6">
 				<div id="map" style="width: 320px; height: 480px;"></div>
         <div>
         </br>
@@ -123,20 +152,18 @@
   
 
 
-	<script src="../bower_components/jquery/dist/jquery.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.5.0-beta.2/angular-route.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
-    <script src="../bower_components/moment/moment.js"></script>
-    <script src="../bower_components/fullcalendar/dist/fullcalendar.js"></script>
-    <script src="../bower_components/fullcalendar/dist/gcal.js"></script>
-
-    <script type="text/javascript" src="app.js"></script>
-    <script src="src/calendar.js"></script>
-    <script src="src/calendarDemo.js"></script>
-    <script src="src/ActivityCtrl.js"></script>
-    <script src="src/MainController.js"></script>
+	<!-- Angular 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.3.13/angular-route.min.js"></script> -->
+<!-- Firebase -->
+<!--<script src="https://cdn.firebase.com/js/client/2.1.2/firebase.js"></script>-->
+<!-- Drag and Drop 
+<script src="/src/angular-dragdrop.min.js"></script> -->
+<!-- AngularFire 
+<script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
 <!-- Controllers -->
 <script>
 
